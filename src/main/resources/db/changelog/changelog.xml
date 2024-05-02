@@ -74,4 +74,9 @@
            <column name="credit_limit" type="bigint" />
        </loadData>
     </changeSet>
+
+    <changeSet id="modifyTableNames" author="olesia">
+        <renameTable oldTableName="Accounts" newTableName="accounts"/>
+        <renameTable oldTableName="Banks" newTableName="banks"/>
+    </changeSet>
 </databaseChangeLog>

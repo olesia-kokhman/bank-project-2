@@ -3,7 +3,7 @@ package org.core.bankproject2.data;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Banks")
+@Table(name = "banks")
 public class BankData {
 
     @Id

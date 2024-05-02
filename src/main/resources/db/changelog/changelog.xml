@@ -57,4 +57,21 @@
             <column name="name" type="varchar(255)"/>
         </loadData>
     </changeSet>
+
+    <changeSet id="modifyAccountNumberSize" author="olesia">
+        <modifyDataType tableName="Accounts" columnName="account_number" newDataType="varchar(16)"/>
+    </changeSet>
+
+    <changeSet id="loadDataToAccounts" author="olesia">
+       <loadData tableName="Accounts"
+                 file="classpath:db/seeds/accounts_seed.csv"
+                 separator=",">
+           <column name="id" type="bigint" />
+           <column name="account_number" type="varchar(16)"/>
+           <column name="bank_id" type="bigint" />
+           <column name="balance" type="numeric" />
+           <column name="currency" type="varchar" />
+           <column name="credit_limit" type="bigint" />
+       </loadData>
+    </changeSet>
 </databaseChangeLog>

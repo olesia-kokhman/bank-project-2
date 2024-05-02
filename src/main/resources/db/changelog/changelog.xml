@@ -49,4 +49,12 @@
         <renameTable oldTableName="Bank" newTableName="Banks" />
     </changeSet>
 
+    <changeSet id="loadDataToBanks" author="olesia">
+        <loadData tableName="Banks"
+                  file="classpath:db/seeds/banks_seed.csv"
+                  separator=",">
+            <column name="id" type="bigint" />
+            <column name="name" type="varchar(255)"/>
+        </loadData>
+    </changeSet>
 </databaseChangeLog>

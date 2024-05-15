@@ -17,7 +17,7 @@ public class BankAccountData {
 
     private String accountNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_id")
     private BankData bank;
 

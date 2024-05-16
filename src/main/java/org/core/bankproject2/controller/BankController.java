@@ -22,7 +22,7 @@ public class BankController {
     @GetMapping
     public ResponseEntity<List<BankData>> getAllBankAccounts() {
         List<BankData> bankDataList = service.getAllBanks();
-        return ResponseEntity.status(HttpStatus.FOUND).body(bankDataList);
+        return ResponseEntity.status(HttpStatus.OK).body(bankDataList);
     }
 
 }

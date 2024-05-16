@@ -1,5 +1,6 @@
 package org.core.bankproject2.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class BankAccountData {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private BankData bank;
 
     private double balance;

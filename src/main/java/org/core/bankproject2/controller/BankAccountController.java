@@ -34,7 +34,7 @@ public class BankAccountController {
     @GetMapping
     public ResponseEntity<List<BankAccountData>> getAllBankAccounts() {
         List<BankAccountData> bankAccountDataList = service.getAllBankAccounts();
-        return ResponseEntity.status(HttpStatus.FOUND).body(bankAccountDataList);
+        return ResponseEntity.status(HttpStatus.OK).body(bankAccountDataList);
     }
 
 }

@@ -2,9 +2,7 @@ package org.core.bankproject2.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.core.bankproject2.data.BankAccountData;
-import org.core.bankproject2.data.BankData;
 import org.core.bankproject2.service.BankAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -37,4 +35,26 @@ public class BankAccountController {
         return ResponseEntity.status(HttpStatus.OK).body(bankAccountDataList);
     }
 
+    @DeleteMapping("/{bankAccountId}")
+    public ResponseEntity<Void> deleteBankAccount(@PathVariable int bankAccountId) {
+        try {
+            service.deleteBankAccount(bankAccountId);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{bankAccountId}")
+    public ResponseEntity<BankAccountData> updateBankAccount(@PathVariable int bankAccountId,
+                                                             @RequestBody BankAccountData updatedBankAccountData) {
+        try {
+            BankAccountData bankAccountData = service.updateBankAccount(bankAccountId, updatedBankAccountData);
+            return ResponseEntity.status(HttpStatus.OK).body(bankAccountData);
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.badRequest().body(updatedBankAccountData);
+        }
+
+
+    }
 }

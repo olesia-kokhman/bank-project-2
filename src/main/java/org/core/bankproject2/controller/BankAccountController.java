@@ -3,6 +3,7 @@ package org.core.bankproject2.controller;
 import lombok.RequiredArgsConstructor;
 import org.core.bankproject2.data.BankAccountData;
 import org.core.bankproject2.service.BankAccountService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -30,8 +31,10 @@ public class BankAccountController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BankAccountData>> getAllBankAccounts() {
-        List<BankAccountData> bankAccountDataList = service.getAllBankAccounts();
+    public ResponseEntity<Page<BankAccountData>> getAllBankAccounts(@RequestParam(defaultValue = "0") int page,
+                                                                    @RequestParam(defaultValue = "10") int size) {
+
+        Page<BankAccountData> bankAccountDataList = service.getAllBankAccounts(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(bankAccountDataList);
     }
 

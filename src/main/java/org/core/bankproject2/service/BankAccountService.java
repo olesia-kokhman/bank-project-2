@@ -3,7 +3,12 @@ package org.core.bankproject2.service;
 import lombok.RequiredArgsConstructor;
 import org.core.bankproject2.data.BankAccountData;
 import org.core.bankproject2.repository.BankAccountRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -16,8 +21,9 @@ public class BankAccountService {
         return repository.save(bankAccountData);
     }
 
-    public List<BankAccountData> getAllBankAccounts() {
-        return repository.findAll();
+    public Page<BankAccountData> getAllBankAccounts(int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable);
     }
 
     public BankAccountData updateBankAccount(int bankAccountDataId, BankAccountData bankAccountData) {
